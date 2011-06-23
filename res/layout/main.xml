@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<com.example.MyVerticalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/verScroller"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:scrollbars="vertical|horizontal"
+      android:scrollbarAlwaysDrawVerticalTrack="true"
+      android:scrollbarAlwaysDrawHorizontalTrack="true"
+        >
+
+    <com.example.MyHorizontalScrollView
+            android:id="@+id/horScroller"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="horizontal|vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
+            >
+        <LinearLayout
+                android:id="@+id/linLayout"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#F0F0F0"
+                >
+        </LinearLayout>
+    </com.example.MyHorizontalScrollView>
+</com.example.MyVerticalScrollView>
+        <!--</ScrollView>-->

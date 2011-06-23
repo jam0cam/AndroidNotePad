@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+    <item android:id="@+id/pageTitle"
+            android:showAsAction="always"
+            android:actionLayout="@layout/file_title" />
+
+    <item android:id="@+id/toggleScroll"
+          android:showAsAction="always"
+          android:actionLayout="@layout/toggle_scroll"
+            />
+    <item android:id="@+id/colorPicker"
+              android:icon="@drawable/color_32"
+              android:showAsAction="always"
+                />
+    <item android:id="@+id/undo"
+          android:icon="@drawable/undo_32"
+          android:showAsAction="always"
+            />
+    <item android:id="@+id/erase"
+          android:icon="@drawable/eraser_32"
+          android:showAsAction="always"
+            />
+    <item android:id="@+id/new_file"
+          android:icon="@drawable/new_32"
+          android:title="New"
+          android:showAsAction="never"
+            />
+    <item android:id="@+id/save_file"
+          android:icon="@drawable/save_32"
+          android:title="Save"
+          android:showAsAction="never"
+            />
+    <item android:id="@+id/open_file"
+          android:icon="@drawable/open_32"
+          android:title="Open"
+          android:showAsAction="never"
+            />
+
+</menu>
