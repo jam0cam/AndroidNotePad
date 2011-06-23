@@ -63,6 +63,8 @@ public class DrawView extends View implements OnTouchListener, Serializable {
     }
 
     public boolean onTouch(View view, MotionEvent event) {
+        this.requestFocus();
+
         //this is meant to be a scrolling action, not a draw
         if (Config.scrollOn)
             return true;

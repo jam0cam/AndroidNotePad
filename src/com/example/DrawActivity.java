@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.Selection;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
@@ -76,6 +77,7 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
     public void saveFile() throws IOException {
         if (!validateTitle()) {
             showDialog("Please give your file a new title.");
+            ((EditText) findViewById(R.id.txtFileTitle)).requestFocus();
             return;
         }
 
