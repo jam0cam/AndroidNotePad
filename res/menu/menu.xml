@@ -23,17 +23,14 @@
           android:showAsAction="always"
             />
     <item android:id="@+id/new_file"
-          android:icon="@drawable/new_32"
           android:title="New"
           android:showAsAction="never"
             />
     <item android:id="@+id/save_file"
-          android:icon="@drawable/save_32"
           android:title="Save"
           android:showAsAction="never"
             />
     <item android:id="@+id/open_file"
-          android:icon="@drawable/open_32"
           android:title="Open"
           android:showAsAction="never"
             />

@@ -44,7 +44,7 @@ public class FileItemAdaper extends ArrayAdapter<String> {
         }
 
         ImageView iv = (ImageView)v.findViewById(R.id.imgFileDelete);
-        iv.setImageResource(R.drawable.delete_32);
+        iv.setImageResource(R.drawable.close_32);
         iv.setOnClickListener(clickListener);
         return v;
     }
