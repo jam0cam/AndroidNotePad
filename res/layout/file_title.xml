@@ -2,9 +2,9 @@
 
     <EditText xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/txtFileTitle"
-            android:layout_width="500px"
+            android:layout_width="800dp"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:singleLine="true"
             android:textSize="14pt"
             android:maxLength="20"
@@ -12,7 +12,7 @@
             android:paddingLeft="5dp"
             android:layout_marginRight="15dp"
             android:gravity="center_horizontal|center_vertical"
-            android:background="#000000"
+            android:background="#FFFFFF"
             android:selectAllOnFocus="true"
             android:imeOptions="actionDone"
             />

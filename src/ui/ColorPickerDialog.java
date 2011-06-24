@@ -16,19 +16,22 @@ public class ColorPickerDialog extends Dialog {
 
     private OnColorChangedListener mListener;
     private int mInitialColor;
+    private ColorPickerView colorPickerView;
+
 
     private static class ColorPickerView extends View {
         private Paint mPaint;
-        private Paint mCenterPaint;
+        public Paint mCenterPaint;
         private final int[] mColors;
         private OnColorChangedListener mListener;
 
         ColorPickerView(Context c, OnColorChangedListener l, int color) {
             super(c);
+
             mListener = l;
             mColors = new int[] {
-                0xFFFF0000, 0xFFFF00FF, 0xFF0000FF, 0xFF00FFFF, 0xFF00FF00,
-                0xFFFFFF00, 0xFFFF0000
+                    0xFFFF0000, 0xFFFF00FF, 0xFF0000FF, 0xFF00FFFF, 0xFF00FF00,
+                    0xFFFFFF00, 0xFFFF0000
             };
             Shader s = new SweepGradient(0, 0, mColors, null);
 
@@ -64,8 +67,8 @@ public class ColorPickerDialog extends Dialog {
                     mCenterPaint.setAlpha(0x80);
                 }
                 canvas.drawCircle(0, 0,
-                                  CENTER_RADIUS + mCenterPaint.getStrokeWidth(),
-                                  mCenterPaint);
+                        CENTER_RADIUS + mCenterPaint.getStrokeWidth(),
+                        mCenterPaint);
 
                 mCenterPaint.setStyle(Paint.Style.FILL);
                 mCenterPaint.setColor(c);
@@ -77,9 +80,9 @@ public class ColorPickerDialog extends Dialog {
             setMeasuredDimension(CENTER_X*2, CENTER_Y*2);
         }
 
-        private static final int CENTER_X = 100;
-        private static final int CENTER_Y = 100;
-        private static final int CENTER_RADIUS = 64;
+        private static final int CENTER_X = 250;
+        private static final int CENTER_Y = 250;
+        private static final int CENTER_RADIUS = 100;
 
         private int floatToByte(float x) {
             int n = java.lang.Math.round(x);
@@ -143,10 +146,12 @@ public class ColorPickerDialog extends Dialog {
             int ib = floatToByte(a[10] * r + a[11] * g + a[12] * b);
 
             return Color.argb(Color.alpha(color), pinToByte(ir),
-                              pinToByte(ig), pinToByte(ib));
+                    pinToByte(ig), pinToByte(ib));
         }
 
         private static final float PI = 3.1415926f;
+
+
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
@@ -203,6 +208,14 @@ public class ColorPickerDialog extends Dialog {
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        mListener.colorChanged(colorPickerView.mCenterPaint.getColor());
+        dismiss();
+        return true;
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         OnColorChangedListener l = new OnColorChangedListener() {
@@ -212,7 +225,9 @@ public class ColorPickerDialog extends Dialog {
             }
         };
 
-        setContentView(new ColorPickerView(getContext(), l, mInitialColor));
+        colorPickerView = new ColorPickerView(getContext(), l, mInitialColor);
+        setContentView(colorPickerView);
         setTitle("Pick a Color");
+
     }
 }

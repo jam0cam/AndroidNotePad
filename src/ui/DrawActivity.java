@@ -16,10 +16,12 @@ import com.example.OpenFileActivity;
 import com.example.R;
 
 import java.io.*;
+import java.security.PrivilegedActionException;
 
 public class DrawActivity extends Activity implements ColorPickerDialog.OnColorChangedListener {
 
     private String fileName;
+    private Menu menu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -157,6 +159,7 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
 
         EditText title = (EditText) menu.findItem(R.id.pageTitle).getActionView();
         title.setText(fileName);
+        this.menu = menu;
         return true;
     }
 
@@ -180,27 +183,29 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
             switch (item.getItemId()) {
                 case R.id.new_file:
                     newFile();
-                    return true;
+                    break;
                 case R.id.save_file:
                     saveFile();
-                    return true;
+                    break;
                 case R.id.open_file:
                     showLoadFileActivity();
-                    return true;
+                    break;
                 case R.id.undo:
                     undo();
-                    return true;
+                    break;
                 case R.id.colorPicker:
                     chooseColor();
-                    return true;
+                    ApplicationState.canvasMode = ApplicationState.CanvasMode.DRAWING;
+                    break;
                 case R.id.erase:
                     ApplicationState.canvasMode = ApplicationState.CanvasMode.ERASING;
-                    return true;
+                    break;
                 case R.id.brush:
                     ApplicationState.canvasMode = ApplicationState.CanvasMode.DRAWING;
-                    return true;
+                    break;
                 case R.id.scroller:
                     ApplicationState.canvasMode = ApplicationState.CanvasMode.SCROLLING;
+                    break;
                 default:
                     return super.onOptionsItemSelected(item);
             }
@@ -208,6 +213,7 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
             Log.e("ERROR", e.getMessage());
         }
 
+        updateActionBar();
         return super.onOptionsItemSelected(item);
     }
 
@@ -225,6 +231,22 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
     private void chooseColor() {
         ColorPickerDialog picker = new ColorPickerDialog(this, this, ApplicationState.paint.getColor());
         picker.show();
+    }
+
+    private void updateActionBar() {
+        if (ApplicationState.canvasMode == ApplicationState.CanvasMode.DRAWING) {
+            menu.findItem(R.id.brush).setIcon(R.drawable.brush_selected_32);
+            menu.findItem(R.id.scroller).setIcon(R.drawable.scroll_32);
+            menu.findItem(R.id.erase).setIcon(R.drawable.eraser_32);
+        } else if (ApplicationState.canvasMode == ApplicationState.CanvasMode.SCROLLING) {
+            menu.findItem(R.id.brush).setIcon(R.drawable.brush_32);
+            menu.findItem(R.id.scroller).setIcon(R.drawable.scroll_selected_32);
+            menu.findItem(R.id.erase).setIcon(R.drawable.eraser_32);
+        } else if (ApplicationState.canvasMode == ApplicationState.CanvasMode.ERASING) {
+            menu.findItem(R.id.brush).setIcon(R.drawable.brush_32);
+            menu.findItem(R.id.scroller).setIcon(R.drawable.scroll_32);
+            menu.findItem(R.id.erase).setIcon(R.drawable.eraser_selected_32);
+        }
     }
 
     @Override

@@ -2,28 +2,28 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
         >
-    <item android:id="@+id/pageTitle"
-            android:showAsAction="always"
-            android:actionLayout="@layout/file_title" />
     <item android:id="@+id/brush"
           android:showAsAction="always"
           android:icon="@drawable/brush_32"
-            />
-    <item android:id="@+id/scroller"
-          android:showAsAction="always"
-          android:icon="@drawable/scroll_32"
             />
     <item android:id="@+id/colorPicker"
               android:icon="@drawable/color_32"
               android:showAsAction="always"
                 />
+    <item android:id="@+id/erase"
+          android:icon="@drawable/eraser_32"
+          android:showAsAction="always"
+            />
     <item android:id="@+id/undo"
           android:icon="@drawable/undo_32"
           android:showAsAction="always"
             />
-    <item android:id="@+id/erase"
-          android:icon="@drawable/eraser_32"
+    <item android:id="@+id/pageTitle"
+            android:showAsAction="always"
+            android:actionLayout="@layout/file_title" />
+    <item android:id="@+id/scroller"
           android:showAsAction="always"
+          android:icon="@drawable/scroll_32"
             />
     <item android:id="@+id/new_file"
           android:title="New"
