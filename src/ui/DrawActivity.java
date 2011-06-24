@@ -1,21 +1,23 @@
-package com.example;
+package ui;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.text.Selection;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
+import com.example.ApplicationState;
+import com.example.Config;
+import com.example.OpenFileActivity;
+import com.example.R;
 
 import java.io.*;
 
-public class DrawActivity extends Activity implements View.OnClickListener, ColorPickerDialog.OnColorChangedListener {
+public class DrawActivity extends Activity implements ColorPickerDialog.OnColorChangedListener {
 
     private String fileName;
 
@@ -28,12 +30,8 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
         setContentView(R.layout.main);
 
         //this initializes with the default paint values
-        Paint paint = new Paint();
-        paint.setColor(Config.DEFAULT_FORE_COLOR);
-        paint.setAntiAlias(true);
-        paint.setStrokeWidth(0);
-
-        Config.globalPaintBrush = paint;
+        if (savedInstanceState == null)
+            initApplicationState();
 
         Bundle b = getIntent().getExtras();
 
@@ -52,16 +50,30 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
 
     }
 
+    private void initApplicationState() {
+        Paint paint = new Paint();
+        paint.setColor(Config.DEFAULT_FORE_COLOR);
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(0);
+
+        ApplicationState.canvasMode = ApplicationState.CanvasMode.DRAWING;
+        ApplicationState.paint = paint;
+    }
 
     public boolean validateTitle() {
         EditText txt = (EditText) findViewById(R.id.txtFileTitle);
+        String currentFileName = txt.getText().toString();
 
         //failed, because no title was given
-        if (txt.getText().toString().equals(this.getString(R.string.untitle)))
+        if (currentFileName.equals(this.getString(R.string.untitle)))
             return false;
 
+        //This is the name that it started with
+        if (currentFileName.equalsIgnoreCase(ApplicationState.originalFileName))
+            return true;
+
         //failed because file name is already used
-        if (isFileNameUsed(txt.getText().toString()))
+        if (isFileNameUsed(currentFileName))
             return false;
 
         return true;
@@ -82,6 +94,11 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
         }
 
         fileName = ((EditText) findViewById(R.id.txtFileTitle)).getText().toString();
+        if (!ApplicationState.originalFileName.equalsIgnoreCase(this.getString(R.string.untitle)) &&
+                !fileName.equalsIgnoreCase(ApplicationState.originalFileName)) {
+            //this means the file was loaded and the file name was changed. Delete the original file
+            deleteFile(ApplicationState.originalFileName);
+        }
         FileOutputStream fos = this.openFileOutput(fileName, Context.MODE_PRIVATE);
         ObjectOutputStream os = new ObjectOutputStream(fos);
 
@@ -106,17 +123,17 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
 
         FileInputStream fis = this.openFileInput(fileName);
         ObjectInputStream is = new ObjectInputStream(fis);
-        DrawView drawView = new DrawView(this, Config.globalPaintBrush);
+        DrawView drawView = new DrawView(this, ApplicationState.paint);
         drawView.readObject(is);
         is.close();
-
         drawView.setLayoutParams(new ViewGroup.LayoutParams(Config.CANVAS_WIDTH, Config.CANVAS_HEIGHT));
         layout.addView(drawView);
-
+        ApplicationState.fileMode = ApplicationState.FileMode.LOAD;
+        ApplicationState.originalFileName = fileName;
     }
 
     public void newFile() {
-        DrawView view = new DrawView(this, Config.globalPaintBrush);
+        DrawView view = new DrawView(this, ApplicationState.paint);
         view.setLayoutParams(new ViewGroup.LayoutParams(Config.CANVAS_WIDTH, Config.CANVAS_HEIGHT));
         LinearLayout layout = (LinearLayout) findViewById(R.id.linLayout);
         layout.removeAllViews();
@@ -127,6 +144,8 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
         EditText txt = (EditText) findViewById(R.id.txtFileTitle);
         if (txt != null)
             txt.setText(fileName);
+        ApplicationState.fileMode = ApplicationState.FileMode.NEW;
+        ApplicationState.originalFileName = fileName;
     }
 
 
@@ -138,9 +157,6 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
 
         EditText title = (EditText) menu.findItem(R.id.pageTitle).getActionView();
         title.setText(fileName);
-
-        ImageView iv = (ImageView) menu.findItem(R.id.toggleScroll).getActionView();
-        iv.setOnClickListener(this);
         return true;
     }
 
@@ -149,14 +165,6 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
         Intent myIntent = new Intent(this, OpenFileActivity.class);
         startActivity(myIntent);
         finish();
-    }
-
-    private void toggleScroll(ImageView view) {
-        Config.scrollOn = !Config.scrollOn;
-        if (Config.scrollOn)
-            view.setImageResource(R.drawable.scroll_32);
-        else
-            view.setImageResource(R.drawable.brush_32);
     }
 
     private void undo() {
@@ -186,8 +194,13 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
                     chooseColor();
                     return true;
                 case R.id.erase:
-                    toggleErase();
+                    ApplicationState.canvasMode = ApplicationState.CanvasMode.ERASING;
                     return true;
+                case R.id.brush:
+                    ApplicationState.canvasMode = ApplicationState.CanvasMode.DRAWING;
+                    return true;
+                case R.id.scroller:
+                    ApplicationState.canvasMode = ApplicationState.CanvasMode.SCROLLING;
                 default:
                     return super.onOptionsItemSelected(item);
             }
@@ -210,23 +223,12 @@ public class DrawActivity extends Activity implements View.OnClickListener, Colo
     }
 
     private void chooseColor() {
-        ColorPickerDialog picker = new ColorPickerDialog(this, this, Config.globalPaintBrush.getColor());
+        ColorPickerDialog picker = new ColorPickerDialog(this, this, ApplicationState.paint.getColor());
         picker.show();
-    }
-
-    private void toggleErase() {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.linLayout);
-        DrawView view = (DrawView) layout.getChildAt(0);
-        view.isErasing = !view.isErasing;
-    }
-
-    @Override
-    public void onClick(View view) {
-        toggleScroll((ImageView) view);
     }
 
     @Override
     public void colorChanged(int color) {
-        Config.globalPaintBrush.setColor(color);
+        ApplicationState.paint.setColor(color);
     }
 }

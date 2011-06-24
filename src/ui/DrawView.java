@@ -1,4 +1,4 @@
-package com.example;
+package ui;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import com.example.*;
 
 
 public class DrawView extends View implements OnTouchListener, Serializable {
@@ -18,7 +19,6 @@ public class DrawView extends View implements OnTouchListener, Serializable {
     Point currentPoint;
     Point previousPoint;
     Stroke currentStroke;
-    boolean isErasing = false;
 
     ArrayList<Stroke> drawing = new ArrayList<Stroke>();
 
@@ -66,18 +66,18 @@ public class DrawView extends View implements OnTouchListener, Serializable {
         this.requestFocus();
 
         //this is meant to be a scrolling action, not a draw
-        if (Config.scrollOn)
+        if (ApplicationState.canvasMode == ApplicationState.CanvasMode.SCROLLING)
             return true;
 
         //This is the start of a stroke
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             float x = event.getX();
             float y = event.getY();
-            if (isErasing) {
+            if (ApplicationState.canvasMode == ApplicationState.CanvasMode.ERASING) {
                 Paint p = getEraserPaint();
                 currentPoint = new Point(x, y, p);
             } else
-                currentPoint = new Point(x, y, Config.globalPaintBrush);
+                currentPoint = new Point(x, y, ApplicationState.paint);
             previousPoint = currentPoint;
             currentStroke = new Stroke();
             drawing.add(currentStroke);
@@ -86,11 +86,11 @@ public class DrawView extends View implements OnTouchListener, Serializable {
         else if (event.getAction() == MotionEvent.ACTION_MOVE || event.getAction() == MotionEvent.ACTION_UP) {
             float x = event.getX();
             float y = event.getY();
-            if (isErasing) {
+            if (ApplicationState.canvasMode == ApplicationState.CanvasMode.ERASING) {
                 Paint p = getEraserPaint();
                 currentPoint = new Point(x, y, p);
             } else
-                currentPoint = new Point(x, y, Config.globalPaintBrush);
+                currentPoint = new Point(x, y, ApplicationState.paint);
 
             Line l = new Line(previousPoint, currentPoint);
             currentStroke.addLine(l);

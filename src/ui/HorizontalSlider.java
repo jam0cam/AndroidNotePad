@@ -1,4 +1,4 @@
-package com.example;
+package ui;
 
 import android.content.Context;
 import android.util.AttributeSet;

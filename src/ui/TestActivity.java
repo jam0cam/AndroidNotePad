@@ -1,8 +1,9 @@
-package com.example;
+package ui;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
+import com.example.R;
 
 /**
  * TODO: JIA: Comment this

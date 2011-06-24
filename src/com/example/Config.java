@@ -3,6 +3,7 @@ package com.example;
 import android.content.pm.PackageInfo;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.StaticLayout;
 import org.apache.http.impl.io.ContentLengthInputStream;
 
 /**
@@ -18,7 +19,5 @@ public class Config {
     public static final int DEFAULT_BG_COLOR = Color.WHITE;
     public static final int CANVAS_WIDTH = 3000;
     public static final int CANVAS_HEIGHT = 3000;
-
-    public static Paint globalPaintBrush;
-    public static boolean scrollOn = false;
+    public static final int DEFAULT_STROKE_WIDTH = 0;
 }

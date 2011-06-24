@@ -1,9 +1,11 @@
-package com.example;
+package ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
+import com.example.ApplicationState;
+import com.example.Config;
 
 /**
  * TODO: JIA: Comment this
@@ -25,9 +27,8 @@ public class MyVerticalScrollView extends ScrollView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (!Config.scrollOn)
+        if (ApplicationState.canvasMode != ApplicationState.CanvasMode.SCROLLING)
             return false;
-
 
         return super.onInterceptTouchEvent(ev);
 
