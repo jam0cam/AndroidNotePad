@@ -10,6 +10,10 @@
               android:icon="@drawable/color_32"
               android:showAsAction="always"
                 />
+    <item android:id="@+id/strokePicker"
+              android:icon="@drawable/stroke_32"
+              android:showAsAction="always"
+                />
     <item android:id="@+id/erase"
           android:icon="@drawable/eraser_32"
           android:showAsAction="always"

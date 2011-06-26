@@ -44,7 +44,7 @@ public class Point implements Drawable, Serializable {
 
     @Override
     public void draw(Canvas c) {
-        Paint p = new Paint();
+        Paint p = new Paint(ApplicationState.paint);
         p.setColor(this.color);
         p.setStrokeWidth(this.strokeWidth);
         c.drawPoint(x, y, p);

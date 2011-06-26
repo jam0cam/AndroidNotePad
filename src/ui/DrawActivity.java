@@ -2,7 +2,7 @@ package ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Application;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -16,9 +16,8 @@ import com.example.OpenFileActivity;
 import com.example.R;
 
 import java.io.*;
-import java.security.PrivilegedActionException;
 
-public class DrawActivity extends Activity implements ColorPickerDialog.OnColorChangedListener {
+public class DrawActivity extends Activity implements ColorPickerDialog.OnColorChangedListener, StrokeWidthPickerDialog.OnStrokeSelectListener {
 
     private String fileName;
     private Menu menu;
@@ -56,7 +55,8 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         Paint paint = new Paint();
         paint.setColor(Config.DEFAULT_FORE_COLOR);
         paint.setAntiAlias(true);
-        paint.setStrokeWidth(0);
+        paint.setStrokeWidth(Config.DEFAULT_STROKE_WIDTH);
+        paint.setStrokeCap(Paint.Cap.ROUND);
 
         ApplicationState.canvasMode = ApplicationState.CanvasMode.DRAWING;
         ApplicationState.paint = paint;
@@ -196,7 +196,14 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
                     undo();
                     break;
                 case R.id.colorPicker:
-                    chooseColor();
+                    ColorPickerDialog picker = new ColorPickerDialog(this, this, ApplicationState.paint.getColor());
+                    picker.show();
+                    ApplicationState.canvasMode = ApplicationState.CanvasMode.DRAWING;
+                    break;
+                //TODO: JIA: make a new icon for chooseing stroke width, and execute this:
+                case R.id.strokePicker:
+                    StrokeWidthPickerDialog pickerDialog2 = new StrokeWidthPickerDialog(this, this, Math.round(ApplicationState.paint.getStrokeWidth()));
+                    pickerDialog2.show();
                     ApplicationState.canvasMode = ApplicationState.CanvasMode.DRAWING;
                     break;
                 case R.id.erase:
@@ -234,11 +241,6 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         return false;
     }
 
-    private void chooseColor() {
-        ColorPickerDialog picker = new ColorPickerDialog(this, this, ApplicationState.paint.getColor());
-        picker.show();
-    }
-
     private void updateActionBar() {
         if (ApplicationState.canvasMode == ApplicationState.CanvasMode.DRAWING) {
             menu.findItem(R.id.brush).setIcon(R.drawable.brush_selected_32);
@@ -264,5 +266,10 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
     @Override
     public void colorChanged(int color) {
         ApplicationState.paint.setColor(color);
+    }
+
+    @Override
+    public void strokeSelected(int strokeWidth) {
+        ApplicationState.paint.setStrokeWidth(strokeWidth);
     }
 }

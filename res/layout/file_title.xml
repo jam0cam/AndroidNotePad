@@ -2,7 +2,7 @@
 
     <EditText xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/txtFileTitle"
-            android:layout_width="800dp"
+            android:layout_width="750dp"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:singleLine="true"

@@ -15,7 +15,7 @@ import com.example.*;
 
 
 public class DrawView extends View implements OnTouchListener, Serializable {
-    Paint paint = new Paint();
+    Paint paint;
     Point currentPoint;
     Point previousPoint;
     Stroke currentStroke;
@@ -44,7 +44,7 @@ public class DrawView extends View implements OnTouchListener, Serializable {
         setFocusableInTouchMode(true);
 
         this.setOnTouchListener(this);
-        this.setBackgroundColor(Color.WHITE);
+        this.setBackgroundColor(Config.DEFAULT_BG_COLOR);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class DrawView extends View implements OnTouchListener, Serializable {
     }
 
     private Paint getEraserPaint() {
-        Paint p = new Paint();
+        Paint p = new Paint(ApplicationState.paint);
         p.setStrokeWidth(50);
         p.setColor(Config.DEFAULT_BG_COLOR);
         return p;

@@ -32,7 +32,7 @@ public class Line implements Drawable, Serializable {
         if (start.equals(end)) {
             start.draw(c);
         } else {
-            Paint p = new Paint();
+            Paint p = new Paint(ApplicationState.paint);
             p.setColor(start.color);
             p.setStrokeWidth(start.strokeWidth);
             c.drawLine(start.x, start.y, end.x, end.y, p);

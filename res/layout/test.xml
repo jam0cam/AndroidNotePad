@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ui.TestEditView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
-
-</ui.TestEditView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="500px"
+      android:layout_height="300px"
+        android:orientation="vertical"
+        android:background="#F0F0F0">
+    <TextView
+            android:id="@+id/txtseekBarTitle"
+            android:layout_width="300px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:background="#0000FF"
+            android:text="sfljdljdf"
+            />
+    <SeekBar
+            android:id="@+id/seekbar1"
+            android:layout_width="300px"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:max="50"
+            />
+</LinearLayout>
