@@ -132,6 +132,7 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         layout.addView(drawView);
         ApplicationState.fileMode = ApplicationState.FileMode.LOAD;
         ApplicationState.originalFileName = fileName;
+        updateActionBar();
     }
 
     public void newFile() {
@@ -160,6 +161,7 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         EditText title = (EditText) menu.findItem(R.id.pageTitle).getActionView();
         title.setText(fileName);
         this.menu = menu;
+        updateActionBar();
         return true;
     }
 
