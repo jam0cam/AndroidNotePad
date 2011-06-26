@@ -208,6 +208,9 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
                 case R.id.scroller:
                     ApplicationState.canvasMode = ApplicationState.CanvasMode.SCROLLING;
                     break;
+                case R.id.exit:
+                    finish();
+                    break;
                 default:
                     return super.onOptionsItemSelected(item);
             }
@@ -218,6 +221,7 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         updateActionBar();
         return super.onOptionsItemSelected(item);
     }
+
 
     private boolean isFileNameUsed(String txt) {
         String files[] = fileList();
@@ -249,6 +253,12 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
             menu.findItem(R.id.scroller).setIcon(R.drawable.scroll_32);
             menu.findItem(R.id.erase).setIcon(R.drawable.eraser_selected_32);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.exit(1);
     }
 
     @Override
