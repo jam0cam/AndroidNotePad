@@ -22,8 +22,7 @@ public class Config {
     public static final int CANVAS_WIDTH = 3000;
     public static final int CANVAS_HEIGHT = 3000;
     public static final int DEFAULT_STROKE_WIDTH = 5;
-//    public static final int STROKE_PICKER_WIDTH = 500;
-//    public static final int STROKE_PICKER_HEIGHT = 500;
+    public static boolean IS_APP_QUITTING = false;
 
     public static final int SEEKBAR_WIDTH = 500;
     public static final int SEEKBAR_HEIGHT = LinearLayout.LayoutParams.WRAP_CONTENT;

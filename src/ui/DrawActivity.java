@@ -200,7 +200,6 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
                     picker.show();
                     ApplicationState.canvasMode = ApplicationState.CanvasMode.DRAWING;
                     break;
-                //TODO: JIA: make a new icon for chooseing stroke width, and execute this:
                 case R.id.strokePicker:
                     StrokeWidthPickerDialog pickerDialog2 = new StrokeWidthPickerDialog(this, this, Math.round(ApplicationState.paint.getStrokeWidth()));
                     pickerDialog2.show();
@@ -216,6 +215,7 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
                     ApplicationState.canvasMode = ApplicationState.CanvasMode.SCROLLING;
                     break;
                 case R.id.exit:
+                    Config.IS_APP_QUITTING = true;
                     finish();
                     break;
                 default:
@@ -260,7 +260,8 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.exit(1);
+        if (Config.IS_APP_QUITTING)
+            System.exit(1);
     }
 
     @Override

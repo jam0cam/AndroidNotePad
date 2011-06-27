@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import com.example.Config;
+import com.example.R;
 
 /**
  * TODO: JIA: Comment this
@@ -27,7 +28,6 @@ public class StrokeWidthPickerDialog extends Dialog implements SeekBar.OnSeekBar
         void strokeSelected(int strokeWidth);
     }
 
-    private Context parent;
     public int currentProgress;
     OnStrokeSelectListener mListener;
     private SeekBar seekBar;
@@ -39,7 +39,6 @@ public class StrokeWidthPickerDialog extends Dialog implements SeekBar.OnSeekBar
                                    int initialStroke
                                    ) {
         super(context);
-        this.parent = context;
         mListener = listener;
         currentProgress = initialStroke;
         setCanceledOnTouchOutside(true);
@@ -48,46 +47,18 @@ public class StrokeWidthPickerDialog extends Dialog implements SeekBar.OnSeekBar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        LinearLayout layout = new LinearLayout(this.parent);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        //layout.setLayoutParams(new LinearLayout.LayoutParams(Config.STROKE_PICKER_WIDTH, Config.STROKE_PICKER_HEIGHT));
-
-        seekBar = getSeekBar();
-        seekBar.setOnSeekBarChangeListener(this);
-        tv = getTextView();
-
-        layout.addView(tv);
-        layout.addView(seekBar);
-
-        setContentView(layout);
-
         setTitle("Pick a Stroke Width");
+        setContentView(R.layout.stroke_width_picker_dialog);
 
-    }
-
-    private SeekBar getSeekBar() {
-        SeekBar bar = new SeekBar(this.parent);
-        LinearLayout.LayoutParams vg = new LinearLayout.LayoutParams(Config.SEEKBAR_WIDTH, Config.SEEKBAR_HEIGHT);
-        vg.gravity= Gravity.CENTER_HORIZONTAL;
-        bar.setLayoutParams(vg);
-        bar.setProgress(currentProgress);
-        bar.setMax(50);
-        bar.setPadding(20,20,20,20);
-        return bar;
-    }
-
-    private TextView getTextView () {
-        TextView tv =new TextView(this.parent);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Config.SEEKBAR_TEXT_WIDTH, Config.SEEKBAR_TEXT_HEIGHT);
-        params.gravity=Gravity.CENTER_HORIZONTAL;
-        tv.setGravity(Gravity.BOTTOM);
-        tv.setLayoutParams(params);
+        tv = (TextView)findViewById(R.id.txtSeekBarTitle);
         tv.setText(String.valueOf(currentProgress));
-        tv.setTextSize(25);
-        return tv;
+        seekBar = (SeekBar)findViewById(R.id.seekbar1);
+        seekBar.setOnSeekBarChangeListener(this);
+        seekBar.setProgress(currentProgress);
     }
 
+
+    
 
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         tv.setText(String.valueOf(progress));
@@ -95,11 +66,11 @@ public class StrokeWidthPickerDialog extends Dialog implements SeekBar.OnSeekBar
     }
 
     public void onStartTrackingTouch(SeekBar seekBar) {
-        System.out.println("hellow");
+        String s;
     }
 
     public void onStopTrackingTouch(SeekBar seekBar) {
-        System.out.println("hellow");
+                String s;
     }
 
     @Override
