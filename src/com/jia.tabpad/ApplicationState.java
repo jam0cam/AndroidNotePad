@@ -1,7 +1,6 @@
-package com.example;
+package com.jia.tabpad;
 
 import android.graphics.Paint;
-import android.text.method.ScrollingMovementMethod;
 
 /**
  * TODO: JIA: Comment this

@@ -1,9 +1,13 @@
 package ui;
 
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import com.jia.tabpad.Config;
+import com.jia.tabpad.R;
 
 /**
  * TODO: JIA: Comment this
@@ -13,22 +17,35 @@ import android.widget.LinearLayout;
  * Time: 4:27 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AboutDialog extends Dialog {
+public class AboutDialog extends AlertDialog {
     Context context;
 
     public AboutDialog(Context c) {
-        super (c);
+        super(c);
         this.context = c;
     }
 
-   @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        LinearLayout layout = new LinearLayout(this.context);
-        layout.setOrientation(LinearLayout.VERTICAL);
+        setTitle(R.string.app_name);
+        setContentView(R.layout.about);
+        TextView tv = (TextView)findViewById(R.id.txtAbout);
+        tv.setTextSize(25);
 
+        StringBuilder sb = new StringBuilder();
+        sb.append("Author: Jia Tse\n");
+        sb.append("Email: jiajtse@gmail.com\n\n");
+        sb.append("Features:\n");
+        sb.append("--Take notes on an extended canvas\n");
+        sb.append("--Pan top/down, left/right for more note taking space\n");
+        sb.append("--Choose between different colors and stroke sizes\n");
+        sb.append("--Erase and undo capabilities\n");
+        sb.append("--Create new, save and open existing notes\n\n");
+        sb.append("Feel free to email your features requests\n");
 
+        tv.setText(sb.toString());
     }
 
 

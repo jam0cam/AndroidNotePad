@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Android Note Pad</string>
+    <string name="app_name">TabPad</string>
     <string name="new_file">New</string>
     <string name="save_file">Save</string>
     <string name="open_file">Open</string>

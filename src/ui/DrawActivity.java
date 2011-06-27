@@ -2,7 +2,6 @@ package ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -10,10 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
-import com.example.ApplicationState;
-import com.example.Config;
-import com.example.OpenFileActivity;
-import com.example.R;
+import com.jia.tabpad.ApplicationState;
+import com.jia.tabpad.Config;
+import com.jia.tabpad.OpenFileActivity;
+import com.jia.tabpad.R;
 
 import java.io.*;
 
@@ -217,6 +216,10 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
                 case R.id.exit:
                     Config.IS_APP_QUITTING = true;
                     finish();
+                    break;
+                case R.id.about:
+                    AboutDialog ad = new AboutDialog(this);
+                    ad.show();
                     break;
                 default:
                     return super.onOptionsItemSelected(item);

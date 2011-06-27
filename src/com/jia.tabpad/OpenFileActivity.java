@@ -1,4 +1,4 @@
-package com.example;
+package com.jia.tabpad;
 
 import android.app.ListActivity;
 import android.content.Intent;

@@ -4,8 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
-import com.example.ApplicationState;
-import com.example.Config;
+import com.jia.tabpad.ApplicationState;
 
 /**
  * TODO: JIA: Comment this

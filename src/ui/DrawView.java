@@ -5,13 +5,12 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import com.example.*;
+import com.jia.tabpad.*;
 
 
 public class DrawView extends View implements OnTouchListener, Serializable {

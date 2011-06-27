@@ -1,4 +1,4 @@
-package com.example;
+package com.jia.tabpad;
 
 import android.content.Context;
 import android.view.LayoutInflater;

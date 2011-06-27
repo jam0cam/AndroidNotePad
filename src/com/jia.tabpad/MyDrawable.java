@@ -1,8 +1,6 @@
-package com.example;
+package com.jia.tabpad;
 
-import android.content.pm.PackageInfo;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 
 /**
  * TODO: JIA: Comment this

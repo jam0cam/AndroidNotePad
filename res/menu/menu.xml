@@ -41,10 +41,13 @@
           android:title="Open"
           android:showAsAction="never"
             />
+    <item android:id="@+id/about"
+              android:title="About"
+              android:showAsAction="never"
+                />
     <item android:id="@+id/exit"
               android:title="Exit"
               android:showAsAction="never"
                 />
-
 
 </menu>

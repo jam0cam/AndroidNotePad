@@ -1,12 +1,7 @@
-package com.example;
+package com.jia.tabpad;
 
-import android.content.pm.PackageInfo;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.text.StaticLayout;
-import android.widget.AbsListView;
 import android.widget.LinearLayout;
-import org.apache.http.impl.io.ContentLengthInputStream;
 
 /**
  * TODO: JIA: Comment this
@@ -28,4 +23,5 @@ public class Config {
     public static final int SEEKBAR_HEIGHT = LinearLayout.LayoutParams.WRAP_CONTENT;
     public static final int SEEKBAR_TEXT_WIDTH = LinearLayout.LayoutParams.WRAP_CONTENT;
     public static final int SEEKBAR_TEXT_HEIGHT = 75;
+    public static final int ABOUT_DIALOG_TEXT_WIDTH = 800;
 }
