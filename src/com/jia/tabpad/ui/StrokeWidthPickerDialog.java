@@ -1,4 +1,4 @@
-package ui;
+package com.jia.tabpad.ui;
 
 import android.app.Dialog;
 import android.content.Context;

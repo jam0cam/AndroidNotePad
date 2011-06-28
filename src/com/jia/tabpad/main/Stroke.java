@@ -1,4 +1,4 @@
-package com.jia.tabpad;
+package com.jia.tabpad.main;
 
 import android.graphics.Canvas;
 

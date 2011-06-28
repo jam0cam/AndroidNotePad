@@ -1,4 +1,4 @@
-package ui;
+package com.jia.tabpad.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,9 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
-import com.jia.tabpad.ApplicationState;
-import com.jia.tabpad.Config;
-import com.jia.tabpad.OpenFileActivity;
+import com.jia.tabpad.main.ApplicationState;
+import com.jia.tabpad.main.Config;
 import com.jia.tabpad.R;
 
 import java.io.*;

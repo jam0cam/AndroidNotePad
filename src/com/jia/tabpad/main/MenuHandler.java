@@ -1,15 +1,15 @@
-package ui;
-
-import android.app.Activity;
+package com.jia.tabpad.main;
 
 /**
  * TODO: JIA: Comment this
  * Created by IntelliJ IDEA.
  * User: jitse
- * Date: 6/19/11
- * Time: 12:56 PM
+ * Date: 6/23/11
+ * Time: 7:08 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TestActivity extends Activity  {
+public class MenuHandler {
+
+
 
 }

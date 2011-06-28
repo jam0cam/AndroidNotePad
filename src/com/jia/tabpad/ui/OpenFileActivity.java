@@ -1,11 +1,12 @@
-package com.jia.tabpad;
+package com.jia.tabpad.ui;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
-import ui.DrawActivity;
+import com.jia.tabpad.main.FileItemAdaper;
+import com.jia.tabpad.R;
 
 /**
  * TODO: JIA: Comment this

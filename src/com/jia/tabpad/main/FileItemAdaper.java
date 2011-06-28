@@ -1,4 +1,4 @@
-package com.jia.tabpad;
+package com.jia.tabpad.main;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.jia.tabpad.R;
 
 /**
  * TODO: JIA: Comment this

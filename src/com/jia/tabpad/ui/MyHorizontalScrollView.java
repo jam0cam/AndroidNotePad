@@ -1,10 +1,10 @@
-package ui;
+package com.jia.tabpad.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
-import com.jia.tabpad.ApplicationState;
+import com.jia.tabpad.main.ApplicationState;
 
 /**
  * TODO: JIA: Comment this

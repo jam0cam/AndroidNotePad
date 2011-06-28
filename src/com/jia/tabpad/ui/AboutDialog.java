@@ -1,12 +1,9 @@
-package ui;
+package com.jia.tabpad.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.jia.tabpad.Config;
 import com.jia.tabpad.R;
 
 /**
@@ -43,7 +40,7 @@ public class AboutDialog extends AlertDialog {
         sb.append("--Choose between different colors and stroke sizes\n");
         sb.append("--Erase and undo capabilities\n");
         sb.append("--Create new, save and open existing notes\n\n");
-        sb.append("Feel free to email your features requests\n");
+        sb.append("Feel free to email your features requests.  Thank you for your support.\n");
 
         tv.setText(sb.toString());
     }
