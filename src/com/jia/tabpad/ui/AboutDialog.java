@@ -32,6 +32,7 @@ public class AboutDialog extends AlertDialog {
         tv.setTextSize(25);
 
         StringBuilder sb = new StringBuilder();
+        sb.append("TabPad is an app designed for tablet use only.\n");
         sb.append("Author: Jia Tse\n");
         sb.append("Email: jiajtse@gmail.com\n\n");
         sb.append("Features:\n");

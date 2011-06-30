@@ -34,7 +34,7 @@ public class OpenFileActivity extends ListActivity implements View.OnClickListen
 
         ListView lv = getListView();
         // lv.removeAllViews();
-        FileItemAdaper adapter = new FileItemAdaper(this,R.layout.list_item, fileList(), this);
+        FileItemAdaper adapter = new FileItemAdaper(this, R.layout.list_item, fileList(), this);
         lv.setAdapter(adapter);
     }
 
@@ -53,13 +53,24 @@ public class OpenFileActivity extends ListActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if (view.getClass().getSimpleName().equals("TextView")) {
-            TextView tv = ((TextView)view);
+            TextView tv = ((TextView) view);
             loadFile(tv.getText().toString());
         } else if (view.getClass().getSimpleName().equals("ImageView")) {
-            LinearLayout layout = (LinearLayout)view.getParent();
+            LinearLayout layout = (LinearLayout) view.getParent();
             TextView tv = (TextView) layout.getChildAt(0);
             this.deleteFile(tv.getText().toString());
             load();
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent myIntent = new Intent(this, DrawActivity.class);
+            startActivity(myIntent);
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

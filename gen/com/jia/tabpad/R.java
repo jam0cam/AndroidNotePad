@@ -17,11 +17,13 @@ public final class R {
         public static final int color_32=0x7f020003;
         public static final int eraser_32=0x7f020004;
         public static final int eraser_selected_32=0x7f020005;
-        public static final int rounded_corner=0x7f020006;
-        public static final int scroll_32=0x7f020007;
-        public static final int scroll_selected_32=0x7f020008;
-        public static final int stroke_32=0x7f020009;
-        public static final int undo_32=0x7f02000a;
+        public static final int launcher=0x7f020006;
+        public static final int launcher512=0x7f020007;
+        public static final int rounded_corner=0x7f020008;
+        public static final int scroll_32=0x7f020009;
+        public static final int scroll_selected_32=0x7f02000a;
+        public static final int stroke_32=0x7f02000b;
+        public static final int undo_32=0x7f02000c;
     }
     public static final class id {
         public static final int about=0x7f060014;
