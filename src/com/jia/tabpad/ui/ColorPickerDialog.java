@@ -8,6 +8,13 @@ import android.graphics.*;
 import android.view.MotionEvent;
 import android.view.View;
 
+/**
+ * This is a dialog for picking color.  Click on the edge of the color circle to choose a color.
+ * Once color is chosen, either click on the center of the color picker or outside the color dialog
+ * to dismiss the color.  When dialog is dismissed, it will raise an event with the color that is
+ * currently chosen. There is no way to "cancel" the transaction.  This is a class that was freely
+ * available in the internet
+ */
 public class ColorPickerDialog extends Dialog {
 
     public interface OnColorChangedListener {

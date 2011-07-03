@@ -15,11 +15,18 @@ import com.jia.tabpad.R;
 
 import java.io.*;
 
+/**
+ * The main activity of the app.  It displays the canvas for the user to draw on.
+ */
 public class DrawActivity extends Activity implements ColorPickerDialog.OnColorChangedListener, StrokeWidthPickerDialog.OnStrokeSelectListener {
 
     private String fileName;
     private Menu menu;
 
+    /**
+     * Initializes global properties and also either loads an existing file or create a new file for drawing
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +56,9 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
 
     }
 
+    /**
+     * Initializes the application state to the default values
+     */
     private void initApplicationState() {
         Paint paint = new Paint();
         paint.setColor(Config.DEFAULT_FORE_COLOR);
@@ -60,6 +70,10 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         ApplicationState.paint = paint;
     }
 
+    /**
+     * Validates whether the title is valid for saving.  i.e. cannot save over an existing file, etc.
+     * @return
+     */
     public boolean validateTitle() {
         EditText txt = (EditText) findViewById(R.id.txtFileTitle);
         String currentFileName = txt.getText().toString();
@@ -79,6 +93,10 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         return true;
     }
 
+    /**
+     * This method displays a generic popup dialog on the screen with the 'text' displayed.
+     * @param text
+     */
     public void showDialog(String text) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(text);
@@ -86,6 +104,11 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         alert.show();
     }
 
+    /**
+     * Validates and save the file.  If the user loaded this file and changed its name, then the old
+     * file will be deleted and the new one created.  Upon successful saving, a popup will appear.
+     * @throws IOException
+     */
     public void saveFile() throws IOException {
         if (!validateTitle()) {
             showDialog("Please give your file a new title.");
@@ -93,6 +116,7 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
             return;
         }
 
+        //detect whether this file name was loaded and then changed.
         fileName = ((EditText) findViewById(R.id.txtFileTitle)).getText().toString();
         if (!ApplicationState.originalFileName.equalsIgnoreCase(this.getString(R.string.untitle)) &&
                 !fileName.equalsIgnoreCase(ApplicationState.originalFileName)) {
@@ -102,6 +126,7 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         FileOutputStream fos = this.openFileOutput(fileName, Context.MODE_PRIVATE);
         ObjectOutputStream os = new ObjectOutputStream(fos);
 
+        //the drawview is the only child in the layout
         LinearLayout layout = (LinearLayout) findViewById(R.id.linLayout);
         DrawView view = (DrawView) layout.getChildAt(0);
 
@@ -117,6 +142,13 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
 
     }
 
+    /**
+     * Loads the file specified by "fileName".  This is guaranteed to be in the system.  The file is loaded,
+     * canvas rendered, and Application State values updated.
+     * @param fileName
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void loadFile(String fileName) throws IOException, ClassNotFoundException {
         LinearLayout layout = (LinearLayout) findViewById(R.id.linLayout);
         layout.removeAllViews();
@@ -133,6 +165,10 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         updateActionBar();
     }
 
+    /**
+     * Sets up the parameters for a new file.  This includes using a default title, the default
+     * painting criteria and Application state is reset.
+     */
     public void newFile() {
         DrawView view = new DrawView(this, ApplicationState.paint);
         view.setLayoutParams(new ViewGroup.LayoutParams(Config.CANVAS_WIDTH, Config.CANVAS_HEIGHT));
@@ -150,32 +186,49 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
     }
 
 
+    /**
+     * Creates the action bar menus for this application
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
 
+        //If this is the result of a loaded file, then there is a filename.  Set this as the title
         EditText title = (EditText) menu.findItem(R.id.pageTitle).getActionView();
         title.setText(fileName);
+        
         this.menu = menu;
         updateActionBar();
         return true;
     }
 
-
+    /**
+     * The user clicked on the open file menu.  Start that activity and finish this one.
+     */
     private void showLoadFileActivity() {
         Intent myIntent = new Intent(this, OpenFileActivity.class);
         startActivity(myIntent);
         finish();
     }
 
+    /**
+     * The undo action.  Calls the view to undo itself.
+     */
     private void undo() {
         LinearLayout layout = (LinearLayout) findViewById(R.id.linLayout);
         DrawView view = (DrawView) layout.getChildAt(0);
         view.undoLastAction();
     }
 
+    /**
+     * Handler for the different types of menu clicks.
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -231,7 +284,11 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * Determines whether the file name is already in used.
+     * @param txt
+     * @return
+     */
     private boolean isFileNameUsed(String txt) {
         String files[] = fileList();
 
@@ -243,6 +300,9 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
         return false;
     }
 
+    /**
+     * Updates the look of the icons on the action bar.  
+     */
     private void updateActionBar() {
         if (ApplicationState.canvasMode == ApplicationState.CanvasMode.DRAWING) {
             menu.findItem(R.id.brush).setIcon(R.drawable.brush_selected_32);

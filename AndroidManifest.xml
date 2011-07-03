@@ -4,6 +4,8 @@
           android:versionCode="1"
           android:versionName="1.0"
         >
+    <uses-permission android:name="android.permission.INTERNET">
+        </uses-permission>
     <supports-screens android:xlargeScreens="true"
             android:smallScreens="false"
                   android:normalScreens="false"
@@ -16,8 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.OpenFileActivity" />
-        <activity android:name=".ui.TestActivity" >
+        <activity android:name=".ui.MyGreatActivity" android:label="@string/app_name">
         </activity>
+
     </application>
     <uses-sdk android:minSdkVersion="11"  android:targetSdkVersion="11"/>
 </manifest>

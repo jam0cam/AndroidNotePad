@@ -4,12 +4,12 @@ import android.graphics.Color;
 import android.widget.LinearLayout;
 
 /**
- * TODO: JIA: Comment this
+ * Contains default configuration values for this application
+ * 
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 6/18/11
  * Time: 2:15 PM
- * To change this template use File | Settings | File Templates.
  */
 public class Config {
     public static final int DEFAULT_FORE_COLOR = Color.BLUE;

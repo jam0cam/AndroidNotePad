@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.jia.tabpad.R;
 
 /**
- * TODO: JIA: Comment this
+ * This is the About Dialog.  Displays information about the current app and author information
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 6/26/11

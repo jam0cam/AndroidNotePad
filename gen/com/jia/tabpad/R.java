@@ -26,27 +26,28 @@ public final class R {
         public static final int undo_32=0x7f02000c;
     }
     public static final class id {
-        public static final int about=0x7f060014;
-        public static final int brush=0x7f06000a;
-        public static final int colorPicker=0x7f06000b;
-        public static final int erase=0x7f06000d;
-        public static final int exit=0x7f060015;
+        public static final int about=0x7f060015;
+        public static final int brush=0x7f06000b;
+        public static final int buttonLogin=0x7f060009;
+        public static final int colorPicker=0x7f06000c;
+        public static final int erase=0x7f06000e;
+        public static final int exit=0x7f060016;
         public static final int horScroller=0x7f060005;
         public static final int imgFileDelete=0x7f060003;
         public static final int linLayout=0x7f060006;
-        public static final int new_file=0x7f060011;
-        public static final int open_file=0x7f060013;
-        public static final int pageTitle=0x7f06000f;
-        public static final int save_file=0x7f060012;
-        public static final int scroller=0x7f060010;
+        public static final int new_file=0x7f060012;
+        public static final int open_file=0x7f060014;
+        public static final int pageTitle=0x7f060010;
+        public static final int save_file=0x7f060013;
+        public static final int scroller=0x7f060011;
         public static final int seekbar1=0x7f060008;
-        public static final int strokePicker=0x7f06000c;
+        public static final int strokePicker=0x7f06000d;
+        public static final int textFacebook=0x7f06000a;
         public static final int txtAbout=0x7f060000;
         public static final int txtFileName=0x7f060002;
         public static final int txtFileTitle=0x7f060001;
         public static final int txtSeekBarTitle=0x7f060007;
-        public static final int txtseekBarTitle=0x7f060009;
-        public static final int undo=0x7f06000e;
+        public static final int undo=0x7f06000f;
         public static final int verScroller=0x7f060004;
     }
     public static final class layout {
@@ -63,9 +64,16 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int delete=0x7f040009;
+        public static final int enter=0x7f04000b;
+        public static final int hello=0x7f040006;
         public static final int new_file=0x7f040001;
         public static final int open_file=0x7f040003;
+        public static final int post=0x7f040008;
+        public static final int request=0x7f040005;
         public static final int save_file=0x7f040002;
         public static final int untitle=0x7f040004;
+        public static final int upload=0x7f040007;
+        public static final int welcome=0x7f04000a;
     }
 }

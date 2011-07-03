@@ -9,12 +9,12 @@ import com.jia.tabpad.main.FileItemAdaper;
 import com.jia.tabpad.R;
 
 /**
- * TODO: JIA: Comment this
+ * An activity that allows the user to choose a file to open.
+ *
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 6/18/11
  * Time: 7:33 PM
- * To change this template use File | Settings | File Templates.
  */
 public class OpenFileActivity extends ListActivity implements View.OnClickListener {
 
@@ -30,14 +30,19 @@ public class OpenFileActivity extends ListActivity implements View.OnClickListen
         load();
     }
 
+    /**
+     * Gets the listview and sets it with the FileItemAdapter
+     */
     private void load() {
-
         ListView lv = getListView();
-        // lv.removeAllViews();
         FileItemAdaper adapter = new FileItemAdaper(this, R.layout.list_item, fileList(), this);
         lv.setAdapter(adapter);
     }
 
+    /**
+     * Calls DrawActivity to load the specified file
+     * @param fileName
+     */
     private void loadFile(String fileName) {
         Bundle b = new Bundle();
 
@@ -50,6 +55,12 @@ public class OpenFileActivity extends ListActivity implements View.OnClickListen
     }
 
 
+    /**
+     * A view was clicked.  If it's the TextView, then the user wants to load this file.  So load it.
+     * If it's the ImageView (delete image), then the user wants to delete this file, so delete it and
+     * reload this page.
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         if (view.getClass().getSimpleName().equals("TextView")) {
@@ -63,6 +74,12 @@ public class OpenFileActivity extends ListActivity implements View.OnClickListen
         }
     }
 
+    /**
+     * If the user clicks back, then go back to the canvas and start a new page
+     * @param keyCode
+     * @param event
+     * @return
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {

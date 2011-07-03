@@ -6,12 +6,11 @@ import android.graphics.Paint;
 import java.io.Serializable;
 
 /**
- * TODO: JIA: Comment this
+ * This is a line.  Knows how to draw itself on the canvas.
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 6/15/11
  * Time: 11:35 PM
- * To change this template use File | Settings | File Templates.
  */
 public class Line implements Drawable, Serializable {
     Point start;

@@ -7,7 +7,9 @@ import android.widget.ScrollView;
 import com.jia.tabpad.main.ApplicationState;
 
 /**
- * TODO: JIA: Comment this
+ * This is a custom implementation of a vertical scroll view.  Basically just wanted to
+ * override the Touch method to determine whether it is a scroll, or a painting.
+ * 
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 6/19/11
@@ -24,6 +26,12 @@ public class MyVerticalScrollView extends ScrollView {
         super(context,  set);
     }
 
+    /**
+     * If the canvas is in a SCROLLING mode, then process the event.  Otherwise, the user is trying
+     * to draw, so ignore this event.
+     * @param ev
+     * @return
+     */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (ApplicationState.canvasMode != ApplicationState.CanvasMode.SCROLLING)

@@ -3,12 +3,11 @@ package com.jia.tabpad.main;
 import android.graphics.Paint;
 
 /**
- * TODO: JIA: Comment this
+ * Contains the state of the application.
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 6/23/11
  * Time: 5:26 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ApplicationState {
 

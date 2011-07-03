@@ -8,12 +8,12 @@ import android.widget.TextView;
 import com.jia.tabpad.R;
 
 /**
- * TODO: JIA: Comment this
+ * A dialog that allows for the selction of the stroke width
+ * Prompts a dialog for the user to
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 6/25/11
  * Time: 11:34 PM
- * To change this template use File | Settings | File Templates.
  */
 public class StrokeWidthPickerDialog extends Dialog implements SeekBar.OnSeekBarChangeListener {
 

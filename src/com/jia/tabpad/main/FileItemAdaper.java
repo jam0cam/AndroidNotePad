@@ -10,15 +10,15 @@ import android.widget.TextView;
 import com.jia.tabpad.R;
 
 /**
- * TODO: JIA: Comment this
+ * This is an adapter class for a listview that contains a textview and an imageview.
+ * 
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 6/19/11
  * Time: 8:47 PM
- * To change this template use File | Settings | File Templates.
  */
 public class FileItemAdaper extends ArrayAdapter<String> {
-    private String items[];
+    private String items[];     //contains the file names to be loaded
     private Context context;
     private View.OnClickListener clickListener;
 
@@ -29,6 +29,15 @@ public class FileItemAdaper extends ArrayAdapter<String> {
         this.clickListener = clickListener;
     }
 
+    /**
+     * For each position passed in, return the view with the filename of that position and a delete
+     * image as the imageview
+     * 
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
