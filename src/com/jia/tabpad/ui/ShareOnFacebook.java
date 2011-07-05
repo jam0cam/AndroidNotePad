@@ -12,6 +12,7 @@ import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
 import com.jia.tabpad.R;
+import com.jia.tabpad.main.Config;
 
 /**
  * TODO: JIA: Comment this
@@ -21,9 +22,9 @@ import com.jia.tabpad.R;
  * Time: 11:22 PM
  * To change this template use File | Settings | File Templates.
  */
-public class MyGreatActivity extends Activity implements View.OnClickListener {
+public class ShareOnFacebook extends Activity implements View.OnClickListener {
 
-    Facebook facebook = new Facebook("216482771730434");
+    Facebook facebook = new Facebook(Config.FACEBOOK_APP_ID);
     private AsyncFacebookRunner mAsyncRunner = new AsyncFacebookRunner(facebook);
 
     //"216482771730434"
@@ -33,7 +34,7 @@ public class MyGreatActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.test);
 
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MyGreatActivity.this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ShareOnFacebook.this);
         String access_token = prefs.getString("access_token", null);
         Long expires = prefs.getLong("access_expires", -1);
 
@@ -51,7 +52,7 @@ public class MyGreatActivity extends Activity implements View.OnClickListener {
                     String token = facebook.getAccessToken();
                     long token_expires = facebook.getAccessExpires();
 
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MyGreatActivity.this);
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ShareOnFacebook.this);
 
                     prefs.edit().putLong("access_expires", token_expires).commit();
 
@@ -78,6 +79,10 @@ public class MyGreatActivity extends Activity implements View.OnClickListener {
         Button b = (Button) findViewById(R.id.buttonLogin);
         b.setOnClickListener(this);
 
+
+    }
+
+    public void share() {
 
     }
 

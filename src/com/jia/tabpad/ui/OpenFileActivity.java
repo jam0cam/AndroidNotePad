@@ -25,7 +25,7 @@ public class OpenFileActivity extends ListActivity implements View.OnClickListen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.list_activity);
+        setContentView(R.layout.file_list_activity);
 
         load();
     }
@@ -35,7 +35,7 @@ public class OpenFileActivity extends ListActivity implements View.OnClickListen
      */
     private void load() {
         ListView lv = getListView();
-        FileItemAdaper adapter = new FileItemAdaper(this, R.layout.list_item, fileList(), this);
+        FileItemAdaper adapter = new FileItemAdaper(this, R.layout.file_list_item, fileList(), this);
         lv.setAdapter(adapter);
     }
 

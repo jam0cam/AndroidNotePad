@@ -273,6 +273,10 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
                     AboutDialog ad = new AboutDialog(this);
                     ad.show();
                     break;
+                case R.id.share:
+                    ShareDialog sd = new ShareDialog(this);
+                    sd.show();
+                    break;
                 default:
                     return super.onOptionsItemSelected(item);
             }

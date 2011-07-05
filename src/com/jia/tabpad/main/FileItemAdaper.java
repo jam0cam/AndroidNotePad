@@ -43,7 +43,7 @@ public class FileItemAdaper extends ArrayAdapter<String> {
         View v = convertView;
         if (v == null) {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.list_item, null);
+            v = vi.inflate(R.layout.file_list_item, null);
         }
         String s = items[position];
 

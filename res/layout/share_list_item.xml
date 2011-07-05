@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+        >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/facebookItem"
+              android:layout_width="400dp"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="1dp"
+              android:background="#FF666666"
+              android:clickable="true"
+        >
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/f_logo"
+                android:padding="10dp"
+                android:clickable="false"
+                android:layout_gravity="right"
+                />
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_gravity="left"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:textSize="14pt"
+                android:text="Facebook"
+                android:gravity="center_vertical"
+                android:clickable="false"
+                />
+    </LinearLayout>
+</LinearLayout>

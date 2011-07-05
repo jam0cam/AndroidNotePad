@@ -41,6 +41,10 @@
           android:title="Open"
           android:showAsAction="never"
             />
+    <item android:id="@+id/share"
+          android:title="Share"
+          android:showAsAction="never"
+            />
     <item android:id="@+id/about"
               android:title="About"
               android:showAsAction="never"
