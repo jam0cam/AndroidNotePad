@@ -1,5 +1,6 @@
 package com.jia.tabpad.main;
 
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 
 /**
@@ -15,6 +16,7 @@ public class ApplicationState {
     public static Paint paint;
     public static FileMode fileMode;
     public static String originalFileName;
+    public static Bitmap imageToShare;
 
     public enum FileMode {
         NEW,

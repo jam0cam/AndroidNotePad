@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
@@ -274,8 +276,35 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
                     ad.show();
                     break;
                 case R.id.share:
-                    ShareDialog sd = new ShareDialog(this);
-                    sd.show();
+                    //create the image to share
+                    LinearLayout layout = (LinearLayout) findViewById(R.id.linLayout);
+                    DrawView view = (DrawView) layout.getChildAt(0);
+                    view.setDrawingCacheEnabled(true);
+                    ApplicationState.imageToShare = view.getCanvasAsImage();
+
+                   
+                    File path1 = Environment.getExternalStoragePublicDirectory(
+                            Environment.DIRECTORY_PICTURES);
+
+                    if (!path1.exists())
+                        path1.mkdirs();
+
+                    File file = new File(path1 + "/DemoPicture.jpg");
+
+
+                    OutputStream out = new FileOutputStream(file);
+                    ApplicationState.imageToShare.compress(Bitmap.CompressFormat.PNG, 90, out);
+
+
+        Context context = getApplicationContext();
+        CharSequence text = "image saved.";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
+        toast.show();
+
+//                    ShareDialog sd = new ShareDialog(this);
+//                    sd.show();
                     break;
                 default:
                     return super.onOptionsItemSelected(item);

@@ -13,7 +13,7 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 public class Point implements Drawable, Serializable {
-    float x, y;
+    public float x, y;
     int color;
     int strokeWidth;
 
@@ -44,9 +44,14 @@ public class Point implements Drawable, Serializable {
 
     @Override
     public void draw(Canvas c) {
+        draw(c, 0, 0);
+    }
+
+    @Override
+    public void draw(Canvas c, int xOffset, int yOffset) {
         Paint p = new Paint(ApplicationState.paint);
         p.setColor(this.color);
         p.setStrokeWidth(this.strokeWidth);
-        c.drawPoint(x, y, p);
+        c.drawPoint(x + xOffset, y + yOffset, p);
     }
 }

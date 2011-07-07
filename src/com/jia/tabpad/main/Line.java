@@ -13,8 +13,8 @@ import java.io.Serializable;
  * Time: 11:35 PM
  */
 public class Line implements Drawable, Serializable {
-    Point start;
-    Point end;
+    public Point start;
+    public Point end;
 
     public Line(Point start, Point end) {
         this.start = start;
@@ -28,14 +28,18 @@ public class Line implements Drawable, Serializable {
 
     @Override
     public void draw(Canvas c) {
+        draw(c, 0, 0);
+    }
+
+    @Override
+    public void draw(Canvas c, int xOffset, int yOffset) {
         if (start.equals(end)) {
-            start.draw(c);
+            start.draw(c, xOffset, yOffset);
         } else {
             Paint p = new Paint(ApplicationState.paint);
             p.setColor(start.color);
             p.setStrokeWidth(start.strokeWidth);
-            c.drawLine(start.x, start.y, end.x, end.y, p);
+            c.drawLine(start.x + xOffset, start.y + yOffset, end.x + xOffset, end.y + yOffset, p);
         }
-
     }
 }

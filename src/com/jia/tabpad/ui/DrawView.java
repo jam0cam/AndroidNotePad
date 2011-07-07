@@ -3,7 +3,9 @@ package com.jia.tabpad.ui;
 import java.io.*;
 import java.util.ArrayList;
 
+import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
@@ -18,6 +20,11 @@ public class DrawView extends View implements OnTouchListener, Serializable {
     Point currentPoint;
     Point previousPoint;
     Stroke currentStroke;
+    Bitmap bitmap;
+    int minX = 100000;
+    int minY = 100000;
+    int maxX = 0;
+    int maxY = 0;
 
     ArrayList<Stroke> drawing = new ArrayList<Stroke>();
 
@@ -122,4 +129,60 @@ public class DrawView extends View implements OnTouchListener, Serializable {
         }
     }
 
+    /**
+     * Calculate the stats of this image, minx, miny, etc.
+     */
+    private void calculateCanvasParams() {
+        for (Stroke s : drawing) {
+            for (Line l : s.lines) {
+                if (l.start.x < minX)
+                    minX = Math.round(l.start.x);
+                if (l.end.x < minX)
+                    minX = Math.round(l.end.x);
+
+                if (l.start.y < minY)
+                    minY = Math.round(l.start.y);
+                if (l.end.y < minY)
+                    minY = Math.round(l.end.y);      
+                
+                if (l.start.x > maxX)
+                    maxX = Math.round(l.start.x);
+                if (l.end.x > maxX)
+                    maxX = Math.round(l.end.x);   
+                
+                if (l.start.y > maxY)
+                    maxY = Math.round(l.start.y);
+                if (l.end.y > maxY)
+                    maxY = Math.round(l.end.y);                 
+            }
+        }
+    }
+
+    public Bitmap getCanvasAsImage() {
+
+        //there is nothing to draw yet
+        if (drawing.size() < 1)
+            return null;
+
+        //figure out the bounds of our drawing, so we don't create an image too big.
+        calculateCanvasParams();
+        int padding = 10;
+        int width = maxX - minX;
+        int height = maxY - minY;
+        int xOffset = 5 + minX * -1;
+        int yOffset = 5 + minY * -1;
+
+        //create a canvas with bounds tight enough just to fit our drawing
+        Canvas singleUseCanvas = new Canvas();
+        bitmap = Bitmap.createBitmap(width + padding, height + padding, Bitmap.Config.ARGB_8888);
+        singleUseCanvas.setBitmap(bitmap);
+
+        singleUseCanvas.drawBitmap(bitmap, 0,0,ApplicationState.paint);
+        singleUseCanvas.drawColor(Config.DEFAULT_BG_COLOR);
+        for (Stroke s : drawing) {
+            s.draw(singleUseCanvas, xOffset,  yOffset);
+        }
+
+        return bitmap;
+    }
 }

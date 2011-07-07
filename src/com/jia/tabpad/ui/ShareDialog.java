@@ -2,6 +2,7 @@ package com.jia.tabpad.ui;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -40,7 +41,8 @@ public class ShareDialog extends Dialog implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.facebookItem) {
-            System.out.println("Share on facebook");
+            Intent myIntent = new Intent(context, ShareOnFacebook.class);
+            context.startActivity(myIntent);
         }
 
         dismiss();
