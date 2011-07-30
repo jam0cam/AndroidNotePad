@@ -282,29 +282,9 @@ public class DrawActivity extends Activity implements ColorPickerDialog.OnColorC
                     view.setDrawingCacheEnabled(true);
                     ApplicationState.imageToShare = view.getCanvasAsImage();
 
-                   
-                    File path1 = Environment.getExternalStoragePublicDirectory(
-                            Environment.DIRECTORY_PICTURES);
-
-                    if (!path1.exists())
-                        path1.mkdirs();
-
-                    File file = new File(path1 + "/DemoPicture.jpg");
-
-
-                    OutputStream out = new FileOutputStream(file);
-                    ApplicationState.imageToShare.compress(Bitmap.CompressFormat.PNG, 90, out);
-
-
-        Context context = getApplicationContext();
-        CharSequence text = "image saved.";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
-        toast.show();
-
-//                    ShareDialog sd = new ShareDialog(this);
-//                    sd.show();
+                    //launch dialog for sharing to mobile sites
+                    ShareDialog sd = new ShareDialog(this);
+                    sd.show();
                     break;
                 default:
                     return super.onOptionsItemSelected(item);

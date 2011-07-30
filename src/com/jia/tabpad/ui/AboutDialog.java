@@ -36,6 +36,7 @@ public class AboutDialog extends AlertDialog {
         sb.append("Author: Jia Tse\n");
         sb.append("Email: jiajtse@gmail.com\n\n");
         sb.append("Features:\n");
+        sb.append("** NEW - Share photos on facebook!\n");
         sb.append("--Take notes on an extended canvas\n");
         sb.append("--Pan top/down, left/right for more note taking space\n");
         sb.append("--Choose between different colors and stroke sizes\n");

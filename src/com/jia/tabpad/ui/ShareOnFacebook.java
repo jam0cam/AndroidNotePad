@@ -1,13 +1,15 @@
 package com.jia.tabpad.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
@@ -15,40 +17,25 @@ import com.facebook.android.FacebookError;
 import com.jia.tabpad.R;
 import com.jia.tabpad.main.ApplicationState;
 import com.jia.tabpad.main.Config;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
 
 /**
- * TODO: JIA: Comment this
+ * Authorize and Share on Facebook
  * Created by IntelliJ IDEA.
  * User: jitse
  * Date: 7/2/11
  * Time: 11:22 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ShareOnFacebook extends Activity implements View.OnClickListener {
 
     Facebook facebook = new Facebook(Config.FACEBOOK_APP_ID);
     private AsyncFacebookRunner mAsyncRunner = new AsyncFacebookRunner(facebook);
 
-    //"216482771730434"
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
-
+        setContentView(R.layout.share_dialog);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ShareOnFacebook.this);
         String access_token = prefs.getString("access_token", null);
@@ -58,11 +45,12 @@ public class ShareOnFacebook extends Activity implements View.OnClickListener {
         if (access_token != null && expires != -1) {
             facebook.setAccessToken(access_token);
             facebook.setAccessExpires(expires);
+            shareImage();
         }
 
 
         if (!facebook.isSessionValid()) {
-            facebook.authorize(this, new String[] { "publish_stream" }, new Facebook.DialogListener() {
+            facebook.authorize(this, new String[] { "publish_stream", "user_photos" }, new Facebook.DialogListener() {
                 @Override
                 public void onComplete(Bundle values) {
                     String token = facebook.getAccessToken();
@@ -74,7 +62,7 @@ public class ShareOnFacebook extends Activity implements View.OnClickListener {
 
                     prefs.edit().putString("access_token", token).commit();
 
-                    share();
+                    shareImage();
                 }
 
                 @Override
@@ -89,23 +77,49 @@ public class ShareOnFacebook extends Activity implements View.OnClickListener {
                 public void onCancel() {
                 }
             });
-        } else {
-            share();
         }
     }
 
     
-    public void share() {
+    public void shareImage() {
+        byte[] data = null;
+
+        Bitmap bi = ApplicationState.imageToShare;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Bitmap bm = ApplicationState.imageToShare;
-        bm.compress(Bitmap.CompressFormat.PNG, 100, baos); //bm is the bitmap object
-        byte[] b = baos.toByteArray();
+        bi.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        data = baos.toByteArray();
 
-        Bundle param = new Bundle();
-        param.putString("message", "picture caption");
-        param.putByteArray("picture", b);
-        mAsyncRunner.request("me/photos", param, new FacebookIdRequestListener(), "POST");
+        Bundle params = new Bundle();
+        params.putString("message", "Checkout this TabPad shoutout!");
+        params.putByteArray("picture", data);
 
+        AsyncFacebookRunner mAsyncRunner = new AsyncFacebookRunner(facebook);
+        mAsyncRunner.request("me/photos", params, "POST", new FacebookIdRequestListener(), null);
+
+        finish();
+    }
+
+    /**
+     * This method will create a new album on facebook
+     */
+    private void createNewAlbum(String albumName, String albumDescription) {
+        Bundle params = new Bundle();
+        //params.putString("method", "photos.upload");
+        params.putString("name", albumName);
+        params.putString("message", albumDescription);
+        AsyncFacebookRunner mAsyncRunner = new AsyncFacebookRunner(facebook);
+        mAsyncRunner.request("me/albums", params, "POST", new FacebookIdRequestListener(), null);
+        finish();
+    }
+
+    /**
+     * This posts a message to the wall
+     * @param msg
+     */
+    private void postOnWall(String msg) {
+        Bundle params = new Bundle();
+	    params.putString("message", msg);
+        mAsyncRunner.request("me/feed", params, "POST", new FacebookIdRequestListener(), null);
         finish();
     }
 
