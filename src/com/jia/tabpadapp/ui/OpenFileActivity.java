@@ -1,12 +1,12 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
-import com.jia.tabpad.main.FileItemAdaper;
-import com.jia.tabpad.R;
+import com.jia.tabpadapp.main.FileItemAdaper;
+import com.jia.tabpadapp.R;
 
 /**
  * An activity that allows the user to choose a file to open.

@@ -1,6 +1,5 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
-import android.widget.Toast;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.FacebookError;
 

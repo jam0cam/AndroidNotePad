@@ -1,10 +1,10 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
-import com.jia.tabpad.main.ApplicationState;
+import com.jia.tabpadapp.main.ApplicationState;
 
 /**
  * This is a custom implementation of a vertical scroll view.  Basically just wanted to

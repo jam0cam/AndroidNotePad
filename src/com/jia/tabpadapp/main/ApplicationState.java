@@ -1,4 +1,4 @@
-package com.jia.tabpad.main;
+package com.jia.tabpadapp.main;
 
 import android.graphics.Bitmap;
 import android.graphics.Paint;

@@ -1,11 +1,11 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import com.jia.tabpad.R;
+import com.jia.tabpadapp.R;
 
 /**
  * A dialog that allows for the selction of the stroke width

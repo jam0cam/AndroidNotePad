@@ -1,4 +1,4 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import com.jia.tabpad.R;
+import com.jia.tabpadapp.R;
 
 /**
  * TODO: JIA: Comment this

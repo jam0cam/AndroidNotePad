@@ -1,22 +1,19 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Toast;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
-import com.jia.tabpad.R;
-import com.jia.tabpad.main.ApplicationState;
-import com.jia.tabpad.main.Config;
+import com.jia.tabpadapp.R;
+import com.jia.tabpadapp.main.ApplicationState;
+import com.jia.tabpadapp.main.Config;
 
 import java.io.ByteArrayOutputStream;
 

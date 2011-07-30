@@ -1,10 +1,10 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.TextView;
-import com.jia.tabpad.R;
+import com.jia.tabpadapp.R;
 
 /**
  * This is the About Dialog.  Displays information about the current app and author information

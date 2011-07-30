@@ -1,8 +1,8 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.jia.tabpad.R;
+import com.jia.tabpadapp.R;
 
 /**
  * TODO: JIA: Comment this

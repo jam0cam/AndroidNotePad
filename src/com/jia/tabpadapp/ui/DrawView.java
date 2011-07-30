@@ -1,9 +1,8 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import java.io.*;
 import java.util.ArrayList;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import com.jia.tabpad.main.*;
+import com.jia.tabpadapp.main.*;
 
 
 public class DrawView extends View implements OnTouchListener, Serializable {

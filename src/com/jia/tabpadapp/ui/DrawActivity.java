@@ -1,19 +1,17 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
-import com.jia.tabpad.main.ApplicationState;
-import com.jia.tabpad.main.Config;
-import com.jia.tabpad.R;
+import com.jia.tabpadapp.main.ApplicationState;
+import com.jia.tabpadapp.main.Config;
+import com.jia.tabpadapp.R;
 
 import java.io.*;
 

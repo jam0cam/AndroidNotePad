@@ -1,4 +1,4 @@
-package com.jia.tabpad.ui;
+package com.jia.tabpadapp.ui;
 
 
 import android.os.Bundle;

@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.jia.tabpad;
+package com.jia.tabpadapp;
 
 public final class R {
     public static final class attr {
